@@ -1,0 +1,964 @@
+{
+  "id": "cjf0423.app.sub",
+  "name": "自用boxjs订阅",
+  "author": "@cjf0423",
+  "icon": "https://raw.githubusercontent.com/cjf0423/QuantumultX/master/png/Avatar/qikuo.png",
+  "repo": "https://github.com/cjf0423/QuantumultX",
+  "apps": [
+   {
+    "id": "meituan",
+    "name": "美团",
+    "keys": ["meituanCookie", "meituanDrawKeyword", "meituanPosition"],
+    "descs_html": [
+      "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/leafTheFish/DeathNote/main/meituan.js\">脚本注释</a></h4>"
+    ],
+    "settings": [{
+          "id": "meituanNotify", 
+          "val": "1", 
+          "name": "推送开关", 
+          "type": "radios", 
+          "desc": "默认开启", 
+          "items": [
+            {
+              "key": "1", 
+              "label": "开启"
+            }, 
+            {
+              "key": "0", 
+              "label": "关闭"
+            }
+          ]
+        }, {
+      "id": "meituanCookie",
+      "name": "美团cookie",
+      "val": "",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "把*.meituan.com包里的userId(可选，用于区别多账号捉包),token填到meituanCookie里，多账号换行或者@隔开。格式：export meituanCookie='userId=12345678&token=ccccccccccccccccc'userId可以删掉不填"
+    }, {
+      "id": "meituanDrawKeyword",
+      "name": "抽奖",
+      "val": "",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "要跑小程序抽奖的，把想抽奖的关键词填到变量meituanDrawKeyword里，多个关键词用&连起来。填.*可以抽所有"
+    }, {
+      "id": "meituanPosition",
+      "name": "虚拟定位",
+      "val": "113233330,23166670",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "默认虚拟定位广州，需要改的自己把经纬度填到meituanPosition里，注意长度：export meituanPosition='113233330,23166670'"
+    }],
+    "script": "https://raw.githubusercontent.com/leafTheFish/DeathNote/main/meituan.js",
+    "author": "@cjf0423",
+    "repo": "https://raw.githubusercontent.com/leafTheFish/DeathNote/main/meituan.js",
+    "icons": ["https://raw.githubusercontent.com/Orz-3/mini/master/Color/meituan.png",
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Color/meituan.png"]
+  },
+  {
+    "id": "elmleaf",
+    "name": "饿了么leaf",
+    "keys": ["elmCookie", "elmOrderFlag", "elmScanConcurrency", "elmOrderAmount", "elmOrderTime"],
+    "descs_html": [
+      "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/leafTheFish/DeathNote/main/elm.js\">脚本注释</a></h4>"
+    ],
+    "settings": [{
+      "id": "elmOrderFlag",
+      "name": "兑换优惠券",
+      "val": "",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "要抢10元无门槛券的话，设置elmOrderFlag为1，每个账号单独设置并用&隔开，如:export elmOrderFlag='1&0&0'，这样设置为账号1抢兑10元无门槛券，其他账号不抢"
+    }, {
+      "id": "elmCookie",
+      "name": "饿了吗cookie",
+      "val": "",
+      "type": "textarea",
+      "placeholder": "(点击以展开说明)",
+      "desc": "饿了么app 或 支付宝饿了么小程序 或 微信饿了么小程序 -> 我的 -> 赚吃货豆h5.ele.me，把header里面的Cookie填进去elmCookie捉包里的Cookie全部内容，如果需要抢券，可以在对应的cookie后面加 orderFlag=1"
+    }, {
+          "id": "elmScanTask", 
+          "val": "0", 
+          "name": "扫描吃货豆任务开关", 
+          "type": "radios", 
+          "desc": "开启的话会使用账号1(不要把黑号放账号1)扫描所有吃货豆任务，但耗时较长(我机器大概需要7分钟)，关闭的话用内置任务列表完成隐藏任务。默认为关闭", 
+          "items": [
+            {
+              "key": "1", 
+              "label": "开启"
+            }, 
+            {
+              "key": "0", 
+              "label": "关闭"
+            }
+          ]
+        },
+    {
+      "id": "elmScanConcurrency",
+      "name": "扫描吃货豆并发搜索任务数",
+      "val": "16",
+      "type": "number",
+      "placeholder": "(点击以展开说明)",
+      "desc": "并发越多搜索越快。但是并发过多可能会丢包变卡，机器性能差的填少一点。默认为16"
+    }, {
+      "id": "elmOrderAmount",
+      "name": "抢券金额",
+      "val": "",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "可选，抢券金额，默认为10元。目前只支持9元和10元，每个账号独立，多账号用&隔开。例如 10&9&10 为账号1和3抢10元券，账号2抢9元券"
+    }, {
+          "id": "elmNotify",
+          "name": "推送通知等级",
+          "val": "2",
+          "type": "selects",
+          "items": [
+            {
+              "key": "0",
+              "label": "只有CK失效时候会推送"
+            },
+            {
+              "key": "1",
+              "label": "CK失效或者抢到10元券才会推送"
+            },
+            {
+              "key": "2",
+              "label": "正常推送"
+            }
+          ],
+          "desc": "默认正常推送"
+        }, {
+      "id": "elmOrderTime",
+      "name": "延迟",
+      "val": "9:59:59:850",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "需要在设置的抢券时间提前1分钟跑，默认9:59:59:950开始抢，连续抢50次(大约0.5秒)可以自己配置开始抢券的时间，把elmOrderTime设置成开始的时间，格式(小时:分钟:秒:毫秒)，注意要用英文冒号，如export elmOrderTime=9:59:59:950"
+    }],
+    "script": "https://raw.githubusercontent.com/leafTheFish/DeathNote/main/elm.js",
+    "author": "@cjf0423",
+    "repo": "https://raw.githubusercontent.com/leafTheFish/DeathNote/main/elm.js",
+    "icons": ["https://raw.githubusercontent.com/Orz-3/mini/master/elem.png",
+        "https://raw.githubusercontent.com/Orz-3/task/master/elem.png"]
+  }, 
+  {
+    "id": "bitfinex-lending",
+    "name": "Bitfinex 自动放贷",
+    "keys": ["bfx_api_key", "bfx_api_secret", "bfx_symbol", "bfx_use_frr", "bfx_frr_offset_pct_day", "bfx_fixed_rate_pct_day", "bfx_period", "bfx_reserve_amount", "bfx_min_offer", "bfx_rate_change_threshold_pct_day", "bfx_amount_change_threshold", "bfx_min_annual_rate", "bfx_dry_run", "bfx_debug"],
+    "descs_html": [
+      "Bitfinex USD 自动放贷脚本，支持 FRR 浮动利率和固定利率模式"
+    ],
+    "settings": [{
+      "id": "bfx_api_key",
+      "name": "API Key",
+      "val": "",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "Bitfinex API Key（需要 Funding 读写权限）"
+    }, {
+      "id": "bfx_api_secret",
+      "name": "API Secret",
+      "val": "",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "Bitfinex API Secret"
+    }, {
+      "id": "bfx_symbol",
+      "name": "放贷币种",
+      "val": "fUSD",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "fUSD, fBTC, fETH, fUSTF0"
+    }, {
+      "id": "bfx_use_frr",
+      "name": "使用 FRR 模式",
+      "val": "true",
+      "type": "boolean",
+      "placeholder": "(点击以展开说明)",
+      "desc": "是否使用 FRR 模式，默认 是"
+    }, {
+      "id": "bfx_frr_offset_pct_day",
+      "name": "FRR 偏移值（%/天）",
+      "val": "0",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "0=纯FRR  -0.001=低于FRR(LIMIT单)  +0.002=高于FRR(FRRDELTAVAR单)"
+    }, {
+      "id": "bfx_fixed_rate_pct_day",
+      "name": "固定日利率（%/天）",
+      "val": "0.018",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "USE_FRR 关闭时生效，0.018 表示 0.018%/天（年化约 6.57%）"
+    }, {
+      "id": "bfx_period",
+      "name": "挂单天数",
+      "val": "2",
+      "type": "number",
+      "placeholder": "(点击以展开说明)",
+      "desc": "放贷期限，最小 2 天，最大 120 天"
+    }, {
+      "id": "bfx_reserve_amount",
+      "name": "预留资金（USD）",
+      "val": "0",
+      "type": "number",
+      "placeholder": "(点击以展开说明)",
+      "desc": "该金额不参与放贷，始终保留在钱包中"
+    }, {
+      "id": "bfx_min_offer",
+      "name": "最低放贷金额（USD）",
+      "val": "150",
+      "type": "number",
+      "placeholder": "(点击以展开说明)",
+      "desc": "可放贷金额低于此值时跳过，Bitfinex 最低要求 150 USD"
+    }, {
+      "id": "bfx_rate_change_threshold_pct_day",
+      "name": "FRR 变动阈值（%/天）",
+      "val": "0.002",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "仅负偏移 LIMIT 模式有效，FRR 变动超过此值才撤单重挂"
+    }, {
+      "id": "bfx_amount_change_threshold",
+      "name": "金额变动阈值",
+      "val": "1",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "检查本次挂单是否和上次挂单差的金额，当超过设置的阈值才会撤单重挂，否则跳过"
+    }, {
+      "id": "bfx_min_annual_rate",
+      "name": "允许最低年化",
+      "val": "0",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "允许接受的最低年化收益，如设置为0.10即最低接受10%的年化收益率，当识别frr低于10%会自动跳过。默认0不限制"
+    }, {
+      "id": "bfx_dry_run",
+      "name": "测试模式（不下单）",
+      "val": "false",
+      "type": "boolean",
+      "placeholder": "(点击以展开说明)",
+      "desc": "开启后只发通知不实际下单，用于调试"
+    }, {
+      "id": "bfx_debug",
+      "name": "Debug模式",
+      "val": "false",
+      "type": "boolean",
+      "placeholder": "(点击以展开说明)",
+      "desc": "开启Debug模式，用于调试"
+    }],
+    "script": "https://raw.githubusercontent.com/cjf0423/QuantumultX/refs/heads/master/script/Scheduled%20Tasks/bitfinex_lending.js",
+    "author": "@cjf0423",
+    "repo": "https://raw.githubusercontent.com/cjf0423/QuantumultX/refs/heads/master/script/Scheduled%20Tasks/bitfinex_lending.jss",
+    "icons": ["https://raw.githubusercontent.com/cjf0423/QuantumultX/master/icon/Bitfinex.png",
+        "https://raw.githubusercontent.com/cjf0423/QuantumultX/master/icon/Bitfinex.png"]
+  }, 
+  {
+  "id": "railgun.checkin.exchange",
+  "name": "Railgun 签到兑换",
+  "author": "小H for 小锋",
+  "repo": "https://github.com/Devilstore/Glados-Railgun-checkin",
+  "icons": [
+    "https://raw.githubusercontent.com/Orz-3/mini/master/Color/glados.png",
+    "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/glados.png"
+  ],
+  "keys": [
+    "railgun_cookie",
+    "railgun_domain",
+    "railgun_exchange_enable",
+    "railgun_exchange_plan",
+    "railgun_verbose",
+    "railgun_notify_enable"
+  ],
+  "settings": [
+    {
+      "id": "railgun_cookie",
+      "name": "Railgun Cookie",
+      "val": "",
+      "type": "textarea",
+      "desc": "必填。填写 railgun.info 或 glados.cloud 的 Cookie。多账号用 & 分隔，例如 cookie1&cookie2。"
+    },
+    {
+      "id": "railgun_domain",
+      "name": "运行域名",
+      "val": "railgun.info",
+      "type": "text",
+      "desc": "默认 railgun.info。可填 glados.cloud。多域名用 & 或英文逗号分隔，例如 railgun.info&glados.cloud。"
+    },
+    {
+      "id": "railgun_exchange_enable",
+      "name": "启用积分兑换",
+      "val": "false",
+      "type": "boolean",
+      "desc": "是否自动兑换积分。默认关闭，开启后积分达到套餐要求会自动兑换。"
+    },
+    {
+      "id": "railgun_exchange_plan",
+      "name": "兑换套餐",
+      "val": "plan500",
+      "type": "selects",
+      "items": [
+        { "key": "plan100", "label": "plan100 - 100积分 / 约10天" },
+        { "key": "plan200", "label": "plan200 - 200积分 / 约30天" },
+        { "key": "plan500", "label": "plan500 - 500积分 / 约100天" }
+      ],
+      "desc": "兑换接口参数 planType。默认 plan500。"
+    },
+    {
+      "id": "railgun_notify_enable",
+      "name": "启用运行结果通知",
+      "val": "true",
+      "type": "boolean",
+      "desc": "默认开启。Surge/QuanX 会弹窗通知；青龙会尝试调用 sendNotify.js。"
+    },
+    {
+      "id": "railgun_verbose",
+      "name": "详细日志",
+      "val": "false",
+      "type": "boolean",
+      "desc": "开启后输出接口响应前 500 字符，便于排查问题。"
+    }
+  ],
+  "scripts": [
+    {
+      "name": "Railgun 签到兑换",
+      "script": "railgun_checkin_exchange_boxjs.js",
+      "argument": "",
+      "timeout": 60,
+      "type": "cron",
+      "cron": "10 9 * * *",
+      "desc": "每日签到、查询天数/积分，可选自动兑换，并通知运行结果。"
+    },
+    {
+      "name": "Railgun 获取 Cookie",
+      "script": "railgun_checkin_exchange_boxjs.js",
+      "type": "http-request",
+      "pattern": "^https?:\\/\\/(railgun\\.info|glados\\.(cloud|space))\\/",
+      "desc": "访问 railgun.info 或 glados.cloud 时抓取 Cookie，保存到 railgun_cookie。抓取成功后建议禁用该抓包规则。"
+    }
+  ],
+  "description": "Railgun/GLaDOS 签到、状态查询、积分查询和可选自动兑换。v3 增加运行结果通知：Surge/QuanX 弹窗，青龙 sendNotify。"
+  },
+  {
+    "id": "Elm",
+    "name": "Leaf饿了么2",
+    "keys": ["elmck", "elmGrabCoupon", "elmCouponTime"],
+    "descs_html": [
+      "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/cjf0423/QuantumultX/master/script/Scheduled%20Tasks/lb_elm.js\">脚本注释</a></h4>"
+    ],
+    "settings": [{
+      "id": "elmck",
+      "name": "饿了吗cookie",
+      "val": "",
+      "type": "textarea",
+      "placeholder": "(点击以展开说明)",
+      "desc": "CK可以填全部或者只填SID和cookie2，建议USERID也填上方便更新CK。"
+    }, {
+      "id": "elmGrabCoupon",
+      "name": "饿了吗兑换账号",
+      "val": "",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "对应账号位置填上1(&隔开)"
+    }, {
+      "id": "elmCouponTime",
+      "name": "兑换延迟",
+      "val": "9:59:59:200",
+      "type": "text",
+      "desc": "抢券时间默认为9点59分59秒200毫秒开始，需要改的话自己设置"
+    }],
+    "script": "https://raw.githubusercontent.com/cjf0423/QuantumultX/master/script/Scheduled%20Tasks/lb_elm.js",
+    "author": "@cjf0423",
+    "repo": "https://raw.githubusercontent.com/cjf0423/QuantumultX/master/script/Scheduled%20Tasks/lb_elm.js",
+    "icons": ["https://raw.githubusercontent.com/Orz-3/mini/master/elem.png",
+        "https://raw.githubusercontent.com/Orz-3/task/master/elem.png"]
+  },
+  {
+    "id": "iMaoTai",
+    "name": "i茅台",
+    "author": "@FoKit",
+    "script": "",
+    "descs_html": [""],
+    "icons": [
+      "https://raw.githubusercontent.com/FoKit/Scripts/main/images/iMaoTai.png",
+      "https://raw.githubusercontent.com/FoKit/Scripts/main/images/iMaoTai.png"
+    ],
+    "keys": [
+      "MT_TOKENS",
+      "MT_PROVINCE",
+      "MT_CITY",
+      "MT_DISTRICT",
+      "MT_ITEM_BLACK",
+      "MT_VERSION",
+      "MT_USERAGENT",
+      "MT_R"
+    ],
+    "settings": [
+      {
+        "id": "MT_TOKENS",
+        "name": "i茅台Token",
+        "val": "",
+        "type": "textarea",
+        "autoGrow": true,
+        "rows": 1,
+        "desc": ""
+      },
+      {
+        "id": "MT_PROVINCE",
+        "name": "省份",
+        "val": "",
+        "type": "text",
+        "desc": "XX省 / 直辖市"
+      },
+      {
+        "id": "MT_CITY",
+        "name": "城市",
+        "val": "",
+        "type": "text",
+        "desc": "XX市 / 直辖市"
+      },
+      {
+        "id": "MT_DISTRICT",
+        "name": "区域",
+        "val": "",
+        "type": "text",
+        "desc": "xx区|xx区"
+      },
+      {
+        "id": "MT_ITEM_BLACK",
+        "name": "商品黑名单",
+        "val": "",
+        "type": "text",
+        "desc": "2478|10056"
+      },
+      {
+        "id": "MT_VERSION",
+        "name": "APP版本号",
+        "val": "",
+        "type": "text",
+        "desc": "x.x.x"
+      },
+      {
+        "id": "MT_USERAGENT",
+        "name": "用户标识",
+        "val": "",
+        "type": "text",
+        "desc": "iOS;16.1.2;Apple;"
+      },
+      {
+        "id": "MT_R",
+        "name": "MT_R",
+        "val": "",
+        "type": "text",
+        "desc": "clips_xxx"
+      }
+    ]
+  },
+  {
+    "id": "qtx",
+    "name": "青碳行",
+    "keys": ["qtxck"],
+    "descs_html": [
+      "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/liuqi6968/-/main/qtx_ios.js\">脚本注释</a></h4>"
+    ],
+    "settings": [{
+      "id": "qtxck",
+      "name": "青碳行cookie",
+      "val": "",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "变量  qtxck token#deviceCodin多账号@分割多账号只测试青龙 "
+    }],
+    "script": "https://raw.githubusercontent.com/leafTheFish/DeathNote/main/ksjsb.js",
+    "author": "@cjf0423",
+    "repo": "https://raw.githubusercontent.com/liuqi6968/-/main/qtx_ios.js",
+    "icons": ["https://raw.githubusercontent.com/cjf0423/QuantumultX/master/icon/qtx.png",
+        "https://raw.githubusercontent.com/cjf0423/QuantumultX/master/icon/qtx.png"]
+  },
+  {
+    "id": "gaodedache",
+    "name": "高德打车签到",
+    "keys": ["GD_Val"],
+    "descs_html": [
+      "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/wf021325/qx/master/task/ampDache.js\">脚本注释</a></h4>"
+    ],
+    "settings": [{
+      "id": "GD_Val",
+      "name": "高德打车cookie",
+      "val": "",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "获取Cookie方法 ，QX开重写，进入【高德地图/微信/支付宝 小程序[高德打车]，打车，福利中心】，任意一端获取成功即可3端签到"
+    }],
+    "script": "https://raw.githubusercontent.com/wf021325/qx/master/task/ampDache.js",
+    "author": "@cjf0423",
+    "repo": "https://raw.githubusercontent.com/wf021325/qx/master/task/ampDache.js",
+    "icons": ["https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/meituan/maicai.png",
+        "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/meituan/maicai.png"]
+  },
+  {
+    "id": "ddgy",
+    "name": "滴滴果园leaf",
+    "keys": ["ddgyToken"],
+    "descs_html": [
+      "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/cjf0423/ZIYE00/leafTheFish/ddgy.js\">脚本注释</a></h4>"
+    ],
+    "settings": [{
+      "id": "ddgyToken",
+      "name": "Cookie",
+      "val": "",
+      "type": "text",
+      "desc": "捉任意game.xiaojukeji.com的包，把body里的uid和token用&连起来填到变量ddgyToken,uid其实不重要，只是用来区分token所属的账号，方便重写。手动捉包的话uid随便填都可以多账号换行或者@隔开重写多账号直接换号捉就行"
+    }, {
+          "id": "ddgyNotify", 
+          "val": "1", 
+          "name": "推送开关", 
+          "type": "radios", 
+          "desc": "关闭:只在CK失效或者果树成熟时候通知；开启:每次运行后通知; 默认为开启", 
+          "items": [
+            {
+              "key": "1", 
+              "label": "开启"
+            }, 
+            {
+              "key": "0", 
+              "label": "关闭"
+            }
+          ]
+        }],
+    "script": "https://raw.githubusercontent.com/cjf0423/ZIYE00/leafTheFish/ddgy.js",
+    "author": "@cjf0423",
+    "repo": "https://raw.githubusercontent.com/cjf0423/ZIYE00/leafTheFish/ddgy.js",
+    "icons": ["https://raw.githubusercontent.com/ChuheGit/1/main/QuantumultX/Gallery/API-Icon/didi_checkin.png",
+        "https://raw.githubusercontent.com/ChuheGit/1/main/QuantumultX/Gallery/API-Icon/didi_checkin.png"]
+  },
+  {
+    "id": "ketui",
+    "name": "可推",
+    "keys": ["ketuick", "ketuicookie"],
+    "descs_html": [
+      "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"http://nm6.xyz/scripts/ketui.js\">脚本注释</a></h4>"
+    ],
+    "settings": [{
+      "id": "ketuick",
+      "name": "可推cookie",
+      "val": "",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "点击刷一刷 看完一个视频 去https://api.ketui.cn/video-helper/miningTask/getGiftappId=vh&appVersion=1.3.5&configVersion=0&id=ksVideo&osType=ios找Authorization复制到变量  ketuick"
+    }, {
+      "id": "ketuicookie",
+      "name": "可推刷一刷cookie",
+      "val": "",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "点击刷一刷 看完一个视频 去https://api.ketui.cn/video-helper/miningTask/getGiftappId=vh&appVersion=1.3.5&configVersion=0&id=ksVideo&osType=ios找cookie复制到变量   ketuicookie"
+    }],
+    "script": "http://nm6.xyz/scripts/ketui.js",
+    "author": "@cjf0423",
+    "repo": "https://raw.githubusercontent.com/cjf0423/ZIYE00/leafTheFish/youqiying.js",
+    "icons": ["https://raw.githubusercontent.com/cjf0423/QuantumultX/master/icon/kt.png",
+        "https://raw.githubusercontent.com/cjf0423/QuantumultX/master/icon/kt.png"]
+  },
+  {
+    "id": "gladosnew",
+    "name": "GLaDOS(新版)",
+    "keys": ["glados_userSignKey"],
+    "descs_html": [
+      "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://gist.githubusercontent.com/ddgksf2013/32b3d37d78433a34370cbfb69780160d/raw/glados.js\">脚本注释</a></h4>"
+    ],
+    "settings": [{
+      "id": "glados_userSignKey",
+      "name": "GLaDOScookie",
+      "val": "",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "获取ck看脚本说明"
+    }],
+    "script": "https://gist.githubusercontent.com/ddgksf2013/32b3d37d78433a34370cbfb69780160d/raw/glados.js",
+    "author": "@cjf0423",
+    "repo": "https://gist.githubusercontent.com/ddgksf2013/32b3d37d78433a34370cbfb69780160d/raw/glados.js",
+    "icons": ["https://raw.githubusercontent.com/58xinian/icon/master/glados1.png",
+        "https://raw.githubusercontent.com/58xinian/icon/master/glados1.png"]
+  },
+  {
+    "id": "youqiying",
+    "name": "优企盈",
+    "keys": ["yqyCookie"],
+    "descs_html": [
+      "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/cjf0423/ZIYE00/leafTheFish/youqiying.js\">脚本注释</a></h4>"
+    ],
+    "settings": [{
+      "id": "yqyCookie",
+      "name": "优企盈cookie",
+      "val": "",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "可以登录后捉包把请求头的 token值 填到变量里，也可以直接把 手机#密码 填进变量"
+    }],
+    "script": "https://raw.githubusercontent.com/cjf0423/ZIYE00/leafTheFish/youqiying.js",
+    "author": "@cjf0423",
+    "repo": "https://raw.githubusercontent.com/cjf0423/ZIYE00/leafTheFish/youqiying.js",
+    "icons": ["https://raw.githubusercontent.com/cjf0423/QuantumultX/master/icon/yqy.png",
+        "https://raw.githubusercontent.com/cjf0423/QuantumultX/master/icon/yqy.png"]
+  },
+  {
+    "id": "gjzz",
+    "name": "赶集直招",
+    "keys": ["gjzzCookie"],
+    "descs_html": [
+      "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/leafTheFish/DeathNote/main/gjzz.js\">脚本注释</a></h4>"
+    ],
+    "settings": [{
+      "id": "gjzzCookie",
+      "name": "Cookie",
+      "val": "",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "可以用58的ck直接跑，捉包把 PPU=UID=xxxxx; 这一串填到gjzzCookie里，多账号@或者换行隔开"
+    }],
+    "script": "https://raw.githubusercontent.com/leafTheFish/DeathNote/main/gjzz.js",
+    "author": "@cjf0423",
+    "repo": "https://raw.githubusercontent.com/leafTheFish/DeathNote/main/gjzz.js",
+    "icons": ["https://raw.githubusercontent.com/cjf0423/QuantumultX/master/icon/gjzz.png",
+        "https://raw.githubusercontent.com/cjf0423/QuantumultX/master/icon/gjzz.png"]
+  },
+  {
+    "id": "zssq",
+    "name": "追书神器",
+    "keys": ["zssqCookie"],
+    "descs_html": [
+      "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/leafTheFish/DeathNote/main/zssq.js\">脚本注释</a></h4>"
+    ],
+    "settings": [{
+      "id": "zssqCookie",
+      "name": "Cookie",
+      "val": "",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "捉*.zhuishushenqi.com的包，把url里面的token填到zssqCookie，多账号换行或者@隔开"
+    }],
+    "script": "https://raw.githubusercontent.com/leafTheFish/DeathNote/main/zssq.js",
+    "author": "@cjf0423",
+    "repo": "https://raw.githubusercontent.com/leafTheFish/DeathNote/main/zssq.js",
+    "icons": ["https://raw.githubusercontent.com/cjf0423/QuantumultX/master/icon/zssq.png",
+        "https://raw.githubusercontent.com/cjf0423/QuantumultX/master/icon/zssq.png"]
+  },
+  {
+    "id": "meituanmaicai",
+    "name": "美团买菜",
+    "keys": ["jojo_mall_meituan"],
+    "descs_html": [
+      "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/JoJoJotarou/myScript/master/script/meituan/mall.meituan.cookie.js\">脚本注释</a></h4>"
+    ],
+    "settings": [{
+      "id": "jojo_mall_meituan",
+      "name": "美团买菜Token",
+      "val": "",
+      "type": "text",
+      "placeholder": "(点击以展开说明)",
+      "desc": "* @description: 方式1：美团APP -> 美团买菜 -> 我的 -> 买菜币 -> 去使用 -> 在退回上一级，QX提示成功即可* @description: 方式2：美团APP -> 美团买菜 -> 我的 -> 买菜币 -> 左滑一半做推出手势再松手（不要真的左滑退出） -> QX提示成功即可"
+    }],
+    "script": "https://raw.githubusercontent.com/JoJoJotarou/myScript/master/script/meituan/mall.meituan.mallcoin.task.js",
+    "author": "@cjf0423",
+    "repo": "https://raw.githubusercontent.com/JoJoJotarou/myScript/master/script/meituan/mall.meituan.mallcoin.task.js",
+    "icons": ["https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/meituan/maicai.png",
+        "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/meituan/maicai.png"]
+  },
+  {
+      "id": "jd_fruit",
+      "name": "东东农场",
+      "keys": ["jd_fruit_inviter"],
+      "descs_html": [
+        "请在输入框输入跟你互助的东东农场的好友互助码",
+        "同一个京东账号的好友邀请码用@隔开,不同京东账号互助码用换行(return按键)隔开。例：<br/>账号1-好友1邀请码@账号1邀请码-好友2邀请码<br/><br/>账号2-好友1邀请码@账号2-好友2邀请码",
+        "下方输入框给出一个示例,自己使用时删除示例邀请码然后按示例填写(只填邀请码)即可"
+      ],
+      "settings": [
+        {
+          "id": "jdFruitNotify",
+          "name": "静默运行",
+          "val": false,
+          "type": "boolean",
+          "desc": "运行东东农场脚本时不发出系统通知"
+        },
+        {
+          "id": "jdFruitBeanCard",
+          "name": "使用水滴换豆卡",
+          "val": false,
+          "type": "boolean",
+          "desc": "使用水滴换豆卡(如果出现限时活动是100g水换20豆,此时比浇水划算,推荐换豆)"
+        },
+        {
+          "id": "jd_fruit_inviter",
+          "name": "东东农场好友邀请码 列表",
+          "val": "",
+          "placeholder": "账号1的好友1邀请码@账号1的好友2邀请码\n\n账号2的好友1邀请码@账号2的好友2邀请码",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 8,
+          "desc": "好友邀请码,同一个京东账号的好友邀请码用@隔开,不同京东账号互助码用换行(return按键)隔开"
+        }
+      ],
+      "author": "@lxk0301",
+      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
+      "script": "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_fruit.js",
+      "icons": [
+        "https://raw.githubusercontent.com/58xinian/icon/master/jdnc_mini.png",
+        "https://raw.githubusercontent.com/58xinian/icon/master/jdnc.png"
+      ]
+  },
+  {
+      "id": "jd_pet",
+      "name": "东东萌宠",
+      "keys": ["jd_pet_inviter"],
+      "descs_html": [
+        "请在输入框输入跟你互助的东东萌宠的好友互助码",
+        "同一个京东账号的好友邀请码用@隔开,不同京东账号互助码用换行(return按键)隔开。例：<br/>账号1-好友1邀请码@账号1邀请码-好友2邀请码<br/><br/>账号2-好友1邀请码@账号2-好友2邀请码",
+        "下方输入框给出一个示例,自己使用时删除示例邀请码然后按示例填写(只填邀请码)即可"
+      ],
+      "settings": [
+        {
+          "id": "jdPetNotify",
+          "name": "静默运行",
+          "val": false,
+          "type": "boolean",
+          "desc": "运行东东萌宠脚本时不发出系统通知"
+        },
+        {
+          "id": "jd_pet_inviter",
+          "name": "东东萌宠好友邀请码 列表",
+          "val": "",
+          "placeholder": "账号1的好友1邀请码@账号1的好友2邀请码\n\n账号2的好友1邀请码@账号2的好友2邀请码",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 8,
+          "desc": "好友邀请码,同一个京东账号的好友邀请码用@隔开,不同京东账号互助码用换行(return按键)隔开"
+        }
+      ],
+      "author": "@lxk0301",
+      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
+      "script": "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_pet.js",
+      "icons": [
+        "https://raw.githubusercontent.com/58xinian/icon/master/jdmc_mini.png",
+        "https://raw.githubusercontent.com/58xinian/icon/master/jdmc.png"
+      ]
+  },
+  {
+      "id": "jd_plantBean",
+      "name": "京东种豆",
+      "keys": ["jd_plantbean_inviter"],
+      "descs_html": [
+        "请在输入框输入跟你互助的京东种豆得豆的好友互助码",
+        "同一个京东账号的好友邀请码用@隔开,不同京东账号互助码用换行(return按键)隔开。例：<br/>账号1-好友1邀请码@账号1邀请码-好友2邀请码<br/><br/>账号2-好友1邀请码@账号2-好友2邀请码",
+        "下方输入框给出一个示例,自己使用时删除示例邀请码然后按示例填写(只填邀请码)即可"
+      ],
+      "settings": [
+        {
+          "id": "jdPlantBeanNotify",
+          "name": "静默运行",
+          "val": true,
+          "type": "boolean",
+          "desc": "运行种豆脚本时不发出系统通知"
+        },
+        {
+          "id": "jd_plantbean_inviter",
+          "name": "京东种豆好友邀请码 列表",
+          "val": "",
+          "placeholder": "账号1的好友1邀请码@账号1的好友2邀请码\n\n账号2的好友1邀请码@账号2的好友2邀请码",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 8,
+          "desc": "好友邀请码,同一个京东账号的好友邀请码用@隔开,不同京东账号互助码用换行(return按键)隔开"
+        }
+      ],
+      "author": "@lxk0301",
+      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
+      "script": "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_plantBean.js",
+      "icons": [
+        "https://raw.githubusercontent.com/58xinian/icon/master/jdzd_mini.png",
+        "https://raw.githubusercontent.com/58xinian/icon/master/jdzd.png"
+      ]
+  },
+  {
+      "id": "lkAliYunPanCheckIn",
+      "name": "阿里云盘签到",
+      "desc_html": "⚠️使用说明</br>详情【<a href='https://gist.githubusercontent.com/Sliverkiss/33800a98dcd029ba09f8b6fc6f0f5162/raw/aliyun.js'><font class='red--text'>点我查看</font></a>】",
+      "icons": [
+        "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/aliYunPana.png",
+        "https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/aliYunPan.png"
+      ],
+      "keys": [
+        "aliyun_data",
+        "aliyun_reward"
+      ],
+      "settings": [
+        {
+          "id": "aliyun_data",
+          "name": "阿里云盘token",
+          "val": "",
+          "type": "text",
+          "desc": "阿里云盘token"
+        },
+        {
+          "id": "aliyun_reward",
+          "name": "是否自动领取奖励",
+          "val": true,
+          "type": "boolean",
+          "desc": "默认自动领取奖励"
+        }
+      ],
+      "author": "@lowking",
+      "repo": "https://github.com/lowking/Scripts",
+      "script": "https://gist.githubusercontent.com/Sliverkiss/33800a98dcd029ba09f8b6fc6f0f5162/raw/aliyun.js"
+  },
+  {
+  "id": 
+  "JD_Cookies_remark", 
+  "name": "登陆助手", 
+  "keys": ["CookieIndex", "@jd_ck_remark.remark", "@jd_ck_remark.mute"], 
+  "descs_html": [
+  "请勿随意在输入框修改内容，建议通过脚本去获取cookie，若要修改，请按照JSON 格式修改（<a href=\"https://www.bejson.com/json/format\">可使用此JSON校验</a> ，或点击右上角按钮🔘进行校验(如有弹窗提示则为异常JSON)）。", 
+  "脚本地址【<a href=\"https://jdsharedresourcescdn.azureedge.net/jdresource/JD_extra_cookie.js\">京东多 CK获取</a>】,并按照此脚本注释进行配置", "可以修改的字段，nickname,mobile", 
+  "示例：[{username:\"yaya\",nickname:\"I'm YaYa man\",mobile:\"1234567890\"}]", 
+  "可以根据 下标、username、nickname、status 字段检索京东多账号 ck"
+  ], 
+  "settings":[
+  {
+  "id": "@jd_ck_remark.mute", 
+  "name": "静音", 
+  "val": false, 
+  "type": "boolean", 
+  "desc": "不会执行通知提示"
+  },
+  {
+  "id": "CookieIndex", 
+  "name": "默认账号", 
+  "val": 0, 
+  "type": "text", 
+  "autoGrow": false, 
+  "rows": 2, 
+  "placeholder": "cookie 下标（0）"
+  },
+  {
+  "id": "@jd_ck_remark.keyword", 
+  "name": "检索条件", 
+  "val": null, 
+  "type": "text", 
+  "autoGrow": false, 
+  "rows": 2, 
+  "placeholder": "下标（0）、username、nickname、status 的值"
+  },
+  {
+  "id": "@jd_ck_remark.remark", 
+  "name": "CK 备注列表", 
+  "val":"", 
+  "type": "textarea", 
+  "autoGrow": false, 
+  "rows": 8, 
+  "desc": "CK 备注列表 (JSON 格式)"
+  }
+  ], 
+  "icons": ["https://raw.githubusercontent.com/Orz-3/mini/master/jd.png", 
+  "https://raw.githubusercontent.com/Orz-3/task/master/jd.png"
+  ], 
+  "author": "@dompling", 
+  "repo": "https://github.com/dompling/Script/blob/master/jd/jd_cookie_search.js", 
+  "script": "https://raw.githubusercontent.com/dompling/Script/master/jd/jd_cookie_search.js"
+  },
+  {
+    "id": "PushBoxjsTask",
+    "name": "V2pTask",
+    "keys": ["v2purl", "v2token", "v2pblacklist"],
+    "settings": [{
+        "id": "v2ptaskupdate",
+        "name": "V2P上传任务",
+        "val": false,
+        "type": "boolean",
+        "desc": "打开才会上传定时任务,用来刚开始使用的时候"
+      },
+      {
+        "id": "jdtaskupdate",
+        "name": "京东上传任务",
+        "val": false,
+        "type": "boolean",
+        "desc": "用来打开上传定时任务包含京东系列"
+      },
+      {
+        "id": "v2pblacklist",
+        "name": "上传黑名单",
+        "val": "",
+        "type": "textarea",
+        "desc": "删除你要上传的任务对象"
+      },
+      {
+        "id": "v2purl",
+        "name": "主页地址",
+        "val": "",
+        "type": "text",
+        "desc": "请到设置查询,例子:http://192.168.1.102:12521"
+      },
+      {
+        "id": "v2token",
+        "name": "WEBHOOK TOKEN",
+        "val": "",
+        "type": "text",
+        "desc": "请到设置查询,例子:a8c259b2-67fe-D-7bfdf1f55cb3"
+      }
+    ],
+    "author": "@cenbomin",
+    "repo": ["https://raw.githubusercontent.com/CenBoMin/GithubSync"],
+    "script": "https://raw.githubusercontent.com/CenBoMin/GithubSync/main/ELECV2PJS/PushTask_elecV2p.js",
+    "icons": ["https://raw.githubusercontent.com/Ariszy/Private-Script/master/img/elecv2p-mini.png", "https://raw.githubusercontent.com/Ariszy/Private-Script/master/img/elecv2p.png"]
+  }, {
+    "id": "PushBoxjsCookie",
+    "name": "V2pCookie",
+    "keys": ["v2purl", "v2token"],
+    "settings": [{
+        "id": "v2pcookieupdate",
+        "name": "V2P上传任务",
+        "val": false,
+        "type": "boolean",
+        "desc": "打开才会上传cookie,用来刚开始使用的时候。"
+      }, {
+        "id": "v2purl",
+        "name": "主页地址",
+        "val": "",
+        "type": "text",
+        "desc": "请到设置查询,例子:http://192.168.1.102:12521"
+      },
+      {
+        "id": "v2token",
+        "name": "WEBHOOK TOKEN",
+        "val": "",
+        "type": "text",
+        "desc": "请到设置查询,例子:a8c259b2-67fe-D-7bfdf1f55cb3"
+      }
+      ],
+  "author": "@cenbomin",
+  "repo": ["https://raw.githubusercontent.com/CenBoMin/GithubSync"],
+  "script": "https://raw.githubusercontent.com/CenBoMin/GithubSync/main/ELECV2PJS/PushBoxjsCookie_elecV2p.js",
+  "icons": ["https://raw.githubusercontent.com/Ariszy/Private-Script/master/img/elecv2p-mini.png", 
+  "https://raw.githubusercontent.com/Ariszy/Private-Script/master/img/elecv2p.png"]
+  },
+  {
+  "id": "txstockapp",
+  "name": "自选羊毛股",
+  "keys": ["signheader", "signkey", "taskheader", "taskkey", "userheader", "userkey", "wxtaskkey", "cash", "cashheader"],
+  "settings": [{
+      "id": "cash",
+      "name": "提现开关:0,不自动提现;1，提现1元；5，提现5元",
+      "val": "",
+      "type": "number",
+      "desc": "默认为0,不自动提现"
+    }
+      ],
+  "author": "@cenbomin",
+  "repo": ["https://raw.githubusercontent.com/CenBoMin/GithubSync"],
+  "script": "https://raw.githubusercontent.com/CenBoMin/GithubSync/main/TXSTOCK/txstockqx.js",
+  "icons": ["https://raw.githubusercontent.com/CenBoMin/GithubSync/main/TXSTOCK/txzxg.png", 
+  "https://raw.githubusercontent.com/CenBoMin/GithubSync/main/TXSTOCK/txzxg.png"]
+  }
+  ]
+}
